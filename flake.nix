@@ -39,6 +39,17 @@
           ./task2.out input.in
           rm task2.out
         '';
+
+        run-cs = pkgs.writeShellScriptBin "run" ''
+          echo "Running task 1:"
+          csc task1.cs > /dev/null
+          mono task1.exe input.in
+          rm task1.exe
+          echo "Running task 2:"
+          csc task2.cs > /dev/null
+          mono task2.exe input.in
+          rm task2.exe
+        '';
       in {
         devShells = {
           c = pkgs.mkShell {
@@ -49,6 +60,18 @@
 
             shellHook = ''
                 echo "hello from c"
+            '';
+          };
+
+          cs = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              mono
+              # dotnet-sdk_8 # for lsp
+              run-cs
+            ];
+
+            shellHook = ''
+                echo "hello from c#"
             '';
           };
 
