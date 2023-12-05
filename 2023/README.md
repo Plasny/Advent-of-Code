@@ -9,4 +9,5 @@ Enjoy checking my solutions.
 | [Day 1: Trebuchet?!](https://adventofcode.com/2023/day/1)    | `Python` | [day01](./day01)     |
 | [Day 2: Cube Conundrum](https://adventofcode.com/2023/day/2) | `Rust`   | [day02](./day02/src) |
 | [Day 3: Gear Ratios](https://adventofcode.com/2023/day/3)    | `C`      | [day03](./day03)     |
+| [Day 4: Scratchcards](https://adventofcode.com/2023/day/4)   | `C#`     | [day04](./day04)     |
 
