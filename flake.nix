@@ -55,6 +55,13 @@
           echo "Running both tasks:"
           go run *.go input.in
         '';
+
+        run-js = pkgs.writeShellScriptBin "run" ''
+          echo "Running task 1:"
+          bun run task1.js input.in
+          echo "Running task 2:"
+          bun run task2.js input.in
+        '';
       in {
         devShells = {
           c = pkgs.mkShell {
@@ -88,6 +95,17 @@
 
             shellHook = ''
                 echo "hello from go"
+            '';
+          };
+
+          js = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              bun
+              run-js
+            ];
+
+            shellHook = ''
+                echo "hello from js"
             '';
           };
 
