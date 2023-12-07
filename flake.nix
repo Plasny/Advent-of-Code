@@ -50,6 +50,11 @@
           mono task2.exe input.in
           rm task2.exe
         '';
+
+        run-go = pkgs.writeShellScriptBin "run" ''
+          echo "Running both tasks:"
+          go run *.go input.in
+        '';
       in {
         devShells = {
           c = pkgs.mkShell {
@@ -72,6 +77,17 @@
 
             shellHook = ''
                 echo "hello from c#"
+            '';
+          };
+
+          go = pkgs.mkShell {
+            buildInputs = with pkgs; [
+              go
+              run-go
+            ];
+
+            shellHook = ''
+                echo "hello from go"
             '';
           };
 
